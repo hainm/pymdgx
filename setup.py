@@ -24,7 +24,7 @@ ext = Extension(
         )
 
 setup(
-    ext_modules = cythonize([ext, ],
+    ext_modules=cythonize([ext, ],
         compiler_directives=cython_directives,
-                            ),
+        ),
 )

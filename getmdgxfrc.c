@@ -5,6 +5,9 @@
 #include "time.h"
 #include "math.h"
 
+// this file is from AmberTools/src/xtalutil/Phenix
+// written by: Pawel Janowski, David Case, Scott Brozell
+
 trajcon CreateTrajCon(){
     trajcon tj={}; //trajectory control data (input file params)
     InitBasicTrajcon(&tj);
