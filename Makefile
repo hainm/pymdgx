@@ -3,7 +3,7 @@ py:
 	amber.python -m pip install -e .
 
 test:
-	amber.python tests/test.py
+	amber.python tests/test_energy_and_force.py
 
 clean:
 	rm -rf ./build
