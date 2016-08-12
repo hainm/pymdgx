@@ -26,6 +26,8 @@ ext = Extension(
 
 setup(
     name='mdgx',
+    packages=['mdgx'],
+    version='0.0.1',
     ext_modules=cythonize([ext, ],
         compiler_directives=cython_directives,
     ),
