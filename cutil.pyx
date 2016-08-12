@@ -61,14 +61,9 @@ cdef class setup:
         cdef int i, j, k
         cdef double[:] gradients = np.zeros(self.n_atoms*3)
 
-        print('gradients', np.asarray(gradients))
-
-        print('ncell', self._mdsystem.CG.ncell)
         for i in range(self._mdsystem.CG.ncell):
             cell_ptr = &(self._mdsystem.CG.data[i])
-            k = cell_ptr.data[j].id
-            print('k', k)
-            print('data[j]', cell_ptr.data[j])
+            k = cell_ptr.data[i].id
 
             for j in range(cell_ptr.nr[0]):
                 gradients[k*3  ] = cell_ptr.data[j].frc[0]
