@@ -7,7 +7,7 @@ Install
 -------
 
 ```bash
-amber.python setup.py install
+amber.python setup.py install --prefix=$AMBERHOME
 
 # or
 # make
