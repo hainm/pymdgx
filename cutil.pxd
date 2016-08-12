@@ -24,8 +24,17 @@ cdef extern from "mdgx.h":
         # dmat fcnorm
                         
     ctypedef struct PotentialFunction "uform":
+        # prmtop tp
+        # dircon dcinp
+        # FrcTab Etab
+        # FrcTab EHtab
+        # reccon rcinp
+        # bckit PPk
         pass
 
+    ctypedef struct trajcon:
+        pass
+        
     ctypedef struct TrajectoryControlData "trajcon":
         int mode
         int nsys
@@ -74,6 +83,7 @@ cdef extern from "mdgx.h":
         double MCBarostatFac[1]
         double mcdVmax
         double Ptarget
+        # lambda is reserved Python keyword
         double mdgx_lambda "lambda"
         double EMinStep0
         double EMinStep
@@ -201,11 +211,24 @@ cdef extern from "mdgx.h":
         int nUdc
         int Esummed
 
+    ctypedef struct ExecutionControl "execon":
+        pass
+
+    ctypedef struct execon:
+        pass
+
     ctypedef struct MolecularDynamicsSystem "mdsys":
         Coordinates crd
         cellgrid CG
         Energy sysUV
-        # execon etimers
+        execon etimers
+
+    ctypedef struct mdsys:
+        pass
+
+    void InitExecon(execon* tm)
+    PotentialFunction InitPotential(char* topsrc, double NBcut, trajcon* tj)
+    void MMForceEnergy(PotentialFunction* U, MolecularDynamicsSystem* MD, TrajectoryControlData* tj)
 
 
 cdef extern from "getmdgxfrc.c":
@@ -223,6 +246,8 @@ cdef extern from "getmdgxfrc.c":
     MolecularDynamicsSystem create_mdsystem_ "CreateMDSys" (const char *crdname, PotentialFunction* U)
     void destroy_MolecularDynamicsSystem "DestroyMDSys"(MolecularDynamicsSystem* mdsysptr)
     void destroy_Uform "DestroyUform"(PotentialFunction* uptr, MolecularDynamicsSystem* mdsysptr)
+    void load_coords_ "LoadPhenixCoordToGrid" (PotentialFunction *U, TrajectoryControlData *tj, 
+                                               const double *Coords, MolecularDynamicsSystem * thisMDptr)
 
 cdef get_positions(MolecularDynamicsSystem mys)
 

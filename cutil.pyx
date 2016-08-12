@@ -35,14 +35,26 @@ cdef class setup:
     def n_atoms(self):
         return self._mdsystem.crd.natom
 
+    def get_positions(self):
+        # compat with pysander
+        return self.positions
+
+    def set_positions(self, arr):
+        # compat with pysander
+        self.positions = arr
+
     @property
     def positions(self):
         return get_positions(self._mdsystem).reshape(self.n_atoms, 3)
 
     @positions.setter
     def positions(self, arr):
-        set_positions(np.asarray(arr).flatten(), self._mdsystem)
-
+        cdef double[:] arr_view = np.asarray(arr).flatten()
+        load_coords_(&self._myu, &self._traj_control,
+                      &arr_view[0], &self._mdsystem)
+        InitExecon(&(self._mdsystem.etimers))
+        MMForceEnergy(&self._myu, &self._mdsystem, &self._traj_control)
+        
     def get_energies(self):
         return self._mdsystem.sysUV
 

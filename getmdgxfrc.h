@@ -10,3 +10,5 @@ mdsys CreateMDSys(const char *crdname, uform* U);
 void DestroyMDSys(mdsys* mdsysptr);
 void DestroyUform(uform* uptr, mdsys* mdsysptr);
 
+void LoadPhenixCoordToGrid(uform *U, trajcon *tj, 
+                           const double *PhenixCoords, mdsys* thisMDptr )

@@ -23,7 +23,7 @@ cdef extern from "mdgx.h":
         int row
         int col
         char* data
-        char** mgdx_map
+        char** mgdx_map "map"
 
     ctypedef CMatrix cmat
 
