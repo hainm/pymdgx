@@ -1,4 +1,7 @@
 # pymdgx
+
+[![Build Status](https://travis-ci.org/hainm/pymdgx.svg?branch=master)](https://travis-ci.org/hainm/pymdgx)
+
 my playground with mdgx python interface.
 
 Nothing is serious yet.
