@@ -20,12 +20,17 @@ with sander.setup(prmtop, rst7, box=parm.box, mm_options=pme_input):
     sander_enegies = dict((att, getattr(ene, att)) for att in dir(ene) if not
             att.startswith('_'))
 
-print(sander_enegies)
-
+print("")
 print("potential energy")
-print(mdgx_ene['eptot'])
+print("sander_enegies")
 print(sander_enegies['tot'])
+print("mdgx_energies")
+print(mdgx_ene['eptot'])
 
+print("")
 print('forces')
-print('sander_forces, first 5 atoms: ', sander_forces[:15])
-print('mdgx_forces, first 5 atoms: ', mdgx_forces.tolist()[:15])
+print('sander_forces, first 5 atoms')
+print(sander_forces[:15])
+print("")
+print('mdgx_forces, first 5 atoms')
+print(mdgx_forces.tolist()[:15])
