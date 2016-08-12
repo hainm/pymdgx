@@ -55,8 +55,28 @@ cdef class setup:
         InitExecon(&(self._mdsystem.etimers))
         MMForceEnergy(&self._myu, &self._mdsystem, &self._traj_control)
         
-    def get_energies(self):
-        return self._mdsystem.sysUV
+    def energy_forces(self):
+        cdef Energy ene
+        cdef cell* cell_ptr
+        cdef int i, j, k
+        cdef double[:] gradients = np.zeros(self.n_atoms*3)
+
+        print('gradients', np.asarray(gradients))
+
+        print('ncell', self._mdsystem.CG.ncell)
+        for i in range(self._mdsystem.CG.ncell):
+            cell_ptr = &(self._mdsystem.CG.data[i])
+            k = cell_ptr.data[j].id
+            print('k', k)
+            print('data[j]', cell_ptr.data[j])
+
+            for j in range(cell_ptr.nr[0]):
+                gradients[k*3  ] = cell_ptr.data[j].frc[0]
+                gradients[k*3+1] = cell_ptr.data[j].frc[1]
+                gradients[k*3+2] = cell_ptr.data[j].frc[2]
+
+        ene = self._mdsystem.sysUV
+        return ene, np.asarray(gradients).reshape(self.n_atoms, 3)
 
     @property
     def mdin(self):

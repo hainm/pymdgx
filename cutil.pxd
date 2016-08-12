@@ -128,38 +128,6 @@ cdef extern from "mdgx.h":
 
     Coordinates ReadRst(AmberPrmtop *tp, char* source);
 
-    cdef struct CellBlockGrid:
-        int nsend
-        int nrecv
-        int MyCellCount
-        int sysID
-        int tid
-        int nthreads
-        int MasterHalfLoad
-        int* nexp
-        int* maxexp
-        int* maximp
-        int* MyCellDomain
-        int* CrdPoolSize
-        # atomb** pexport
-        # atombv** Vimport
-        # atombv** Vexport
-        # atombx** Ximport
-        # atombx** Xexport
-        # atombx** CrdPool
-        # dcplan DirCommPlan
-        int maxatom
-        int ncell
-        int ng[1]
-        double dbng[1]
-        double celldim[1]
-        # cell* data
-        # cell*** mgdx_map
-        # gsplc* MeshCommPlan
-        # imat AtmGPS
-
-    ctypedef CellBlockGrid cellgrid
-
     ctypedef struct Energy "Energy":
         double delec
         double relec
@@ -210,6 +178,81 @@ cdef extern from "mdgx.h":
         int updateV
         int nUdc
         int Esummed
+
+    cdef struct AtomInCell:
+        int id
+        int lj
+        double q
+        double loc[1]
+        double frc[1]
+
+    ctypedef AtomInCell atomc
+
+    cdef struct CellBlock:
+        int nexp
+        int nimp
+        int maxatom
+        int CGRank
+        int pmordr[1]
+        int gbin[1]
+        int nFscr
+        int* nr
+        int* nsr
+        int* ljIDbuff
+        int* qIDbuff
+        int* GPSptr
+        # rngbuff* ljr2buff
+        # rngbuff* qr2buff
+        # imat ordr
+        # imat supordr
+        double orig[1]
+        double midp[1]
+        # bcof* xcof
+        # bcof* ycof
+        # bcof* zcof
+        atomc* atmscr
+        atomc* data
+        atomc** mgdx_map "map"
+        # fbook* Fscr
+        # atomb* pexport
+        # atombv* Vimport
+        # atombv* Vexport
+        # atombx* Ximport
+        # atombx* Xexport
+
+    ctypedef CellBlock cell
+
+    cdef struct CellBlockGrid:
+        int nsend
+        int nrecv
+        int MyCellCount
+        int sysID
+        int tid
+        int nthreads
+        int MasterHalfLoad
+        int* nexp
+        int* maxexp
+        int* maximp
+        int* MyCellDomain
+        int* CrdPoolSize
+        # atomb** pexport
+        # atombv** Vimport
+        # atombv** Vexport
+        # atombx** Ximport
+        # atombx** Xexport
+        # atombx** CrdPool
+        # dcplan DirCommPlan
+        int maxatom
+        int ncell
+        int ng[1]
+        double dbng[1]
+        double celldim[1]
+        cell* data
+        cell*** mgdx_map "map"
+        # gsplc* MeshCommPlan
+        # imat AtmGPS
+
+    ctypedef CellBlockGrid cellgrid
 
     ctypedef struct ExecutionControl "execon":
         pass

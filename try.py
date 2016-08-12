@@ -10,8 +10,8 @@ data = cutil.test_load('vAla3.prmtop', 'vAla3.rst7')
 
 context = cutil.setup(prmtop, rst7)
 
-context.positions = context.positions + 1E-8
-mdgx_ene = context.get_energies()
+context.positions = context.positions + 1E-6
+mdgx_ene, mdgx_forces = context.energy_forces()
 print(mdgx_ene)
 
 pme_input = sander.pme_input()
