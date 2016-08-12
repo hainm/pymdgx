@@ -7,8 +7,9 @@ test:
 
 clean:
 	rm -rf ./build
-	rm ./mdgdx/cutil.so
-	rm ./mdgdx/cutil.c 
+	rm ./mdgdx/mdgx.so
+	rm ./mdgdx/mggx.c 
+	rm ./*/*.pyc
 
 i:
 	amber.ipython
