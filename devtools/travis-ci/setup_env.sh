@@ -29,3 +29,6 @@ conda install pysander -c ambermd --yes
 
 # libmdgx
 conda install libmdgx -c hainm --yes
+
+# fftw3
+conda install fftw3 -c Eumetsat --yes
