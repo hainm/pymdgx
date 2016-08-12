@@ -6,7 +6,7 @@ matrix:
     - { os: linux, env: PYTHON_VERSION=3.4 }
     - { os: linux, env: PYTHON_VERSION=3.5 }
 
-sudo: false
+sudo: True
 
 addons:
   apt:
@@ -22,6 +22,7 @@ addons:
     - libnetcdf-dev
 
 install:
+    - sudo apt-get install libfftw3-3
     - source devtools/travis-ci/setup_env.sh
     - python --version
 
