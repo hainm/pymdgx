@@ -16,7 +16,7 @@ conda update -n root conda-build --yes
 conda install --yes conda-build jinja2 anaconda-client pip
 
 # create myenv
-conda create -y -n myenv python=$PYTHON_VERSION nose pytest numpy coverage cython netcdf4
+conda create -y -n myenv python=$PYTHON_VERSION nose pytest numpy coverage pytest-cov cython netcdf4
 
 source activate myenv
 
