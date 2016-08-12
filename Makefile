@@ -5,3 +5,6 @@ test:
 clean:
 	rm -rf ./build
 	rm cutil.so cutil.c 
+
+i:
+	amber.ipython

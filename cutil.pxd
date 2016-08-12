@@ -108,13 +108,13 @@ cdef extern from "mdgx.h":
         # cmat frcsuff
         char outsuff[1]
         # cmat inptext
-        char* inpline
+        # char* inpline
         int tid
         int nthreads
         int nCPUcluster
         # lgrp* CPUcluster
         # imat SystemCPUs
-        int* MySystemDomain
+        # int* MySystemDomain
 
     Coordinates ReadRst(AmberPrmtop *tp, char* source);
 
@@ -223,3 +223,10 @@ cdef extern from "getmdgxfrc.c":
     MolecularDynamicsSystem create_mdsystem_ "CreateMDSys" (const char *crdname, PotentialFunction* U)
     void destroy_MolecularDynamicsSystem "DestroyMDSys"(MolecularDynamicsSystem* mdsysptr)
     void destroy_Uform "DestroyUform"(PotentialFunction* uptr, MolecularDynamicsSystem* mdsysptr)
+
+cdef get_positions(MolecularDynamicsSystem mys)
+
+cdef class setup:
+    cdef MolecularDynamicsSystem _mdsystem
+    cdef TrajectoryControlData _traj_control
+    cdef PotentialFunction _myu 
