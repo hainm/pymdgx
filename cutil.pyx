@@ -28,8 +28,11 @@ cdef class setup:
         return self
 
     def __exit__(self, *args):
-        # clean
-        pass
+        self._clean()
+
+    def _clean(self):
+        destroy_mdsystem(&self._mdsystem)
+        destroy_uform(&self._myu, &self._mdsystem)
 
     @property
     def n_atoms(self):

@@ -287,8 +287,8 @@ cdef extern from "getmdgxfrc.c":
     TrajectoryControlData create_trajcon_ "CreateTrajCon"()
     PotentialFunction load_topology_ "LoadTopology"(const char *tpname, TrajectoryControlData* tj)
     MolecularDynamicsSystem create_mdsystem_ "CreateMDSys" (const char *crdname, PotentialFunction* U)
-    void destroy_MolecularDynamicsSystem "DestroyMDSys"(MolecularDynamicsSystem* mdsysptr)
-    void destroy_Uform "DestroyUform"(PotentialFunction* uptr, MolecularDynamicsSystem* mdsysptr)
+    void destroy_mdsystem "DestroyMDSys"(MolecularDynamicsSystem* mdsysptr)
+    void destroy_uform "DestroyUform"(PotentialFunction* uptr, MolecularDynamicsSystem* mdsysptr)
     void load_coords_ "LoadPhenixCoordToGrid" (PotentialFunction *U, TrajectoryControlData *tj, 
                                                const double *Coords, MolecularDynamicsSystem * thisMDptr)
 
