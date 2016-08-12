@@ -6,8 +6,6 @@ from numpy.testing import assert_almost_equal as aa_eq
 prmtop = 'vAla3.prmtop'
 rst7 = 'vAla3.rst7'
 
-data = cutil.test_load('vAla3.prmtop', 'vAla3.rst7')
-
 context = cutil.setup(prmtop, rst7)
 
 context.positions = context.positions + 1E-6
