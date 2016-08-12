@@ -8,3 +8,6 @@ clean:
 
 i:
 	amber.ipython
+
+push:
+	git push upstream master
