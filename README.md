@@ -3,16 +3,6 @@ my playground with mdgx python interface.
 
 Nothing is serious yet.
 
-Install
--------
-
-```bash
-amber.python setup.py install --prefix=$AMBERHOME
-
-# or
-# make
-```
-
 Examples
 --------
 
@@ -30,6 +20,23 @@ mdgx_ene, mdgx_forces = context.energy_forces()
 # set positions
 context.positions = new_positions
 ```
+
+Install
+-------
+
+```bash
+amber.python setup.py install --prefix=$AMBERHOME
+
+# or
+# make
+```
+
+Require
+-------
+
+- cython
+- numpy
+- AmberTools >= 16
 
 Compare to sander energy and force
 ----------------------------------
