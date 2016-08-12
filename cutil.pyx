@@ -1,5 +1,8 @@
 import numpy as np
 
+# Some notes
+# - cython will auto convert simple C struct to python dict
+
 cdef get_positions(MolecularDynamicsSystem mys):
     import numpy as np
     cdef int n_atoms = mys.crd.natom
