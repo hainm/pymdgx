@@ -26,6 +26,7 @@ install:
     - python --version
 
 script:
+    - export AMBERHOME=`python -c 'import sys; print(sys.prefix)'`
     - python ./setup.py install
     - (cd tests && py.test -vs .)
 
