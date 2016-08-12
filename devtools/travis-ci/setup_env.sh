@@ -21,7 +21,8 @@ conda create -y -n myenv python=$PYTHON_VERSION nose pytest numpy coverage pytes
 source activate myenv
 
 # ParmEd
-pip install https://github.com/ParmEd/ParmEd/archive/2.5.1.tar.gz
+# pip install https://github.com/ParmEd/ParmEd/archive/2.5.1.tar.gz
+conda install parmed -c ambermd --yes
 
 # pysander
 conda install pysander -c ambermd --yes
