@@ -63,15 +63,15 @@ cdef class setup:
 
         for i in range(self._mdsystem.CG.ncell):
             cell_ptr = &(self._mdsystem.CG.data[i])
-            k = cell_ptr.data[i].id
 
             for j in range(cell_ptr.nr[0]):
+                k = cell_ptr.data[j].id
                 gradients[k*3  ] = cell_ptr.data[j].frc[0]
                 gradients[k*3+1] = cell_ptr.data[j].frc[1]
                 gradients[k*3+2] = cell_ptr.data[j].frc[2]
 
         ene = self._mdsystem.sysUV
-        return ene, np.asarray(gradients).reshape(self.n_atoms, 3)
+        return ene, np.asarray(gradients)
 
     @property
     def mdin(self):
@@ -101,15 +101,9 @@ def test_load(tname, cname):
 
     get_mdgx_force(&phenix_coords[0], &target[0], &gradients[0], &myu, &tcon, &mys)
 
-    with sander.setup(tname, cname, parm.box, sander.pme_input()) as context:
-        ene, frc = context.energy_forces()
-
-    data = {}
-    data['energy'] = mys.sysUV
-    data['coords'] = get_positions(mys).copy()
-
-    set_positions(np.zeros(mys.crd.natom*3), mys)
-    data['coords2'] = get_positions(mys).copy()
+    data = dict()
+    data['energy'] = np.asarray(target)
+    data['forces'] = np.asarray(gradients)
 
     return data
 
