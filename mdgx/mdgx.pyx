@@ -21,8 +21,8 @@ cdef class setup:
         cdef PotentialFunction myu
 
         self._traj_control = create_trajcon_()
-        self._myu = load_topology_(prmtop, &self._traj_control)
-        self._mdsystem = create_mdsystem_(rst7, &self._myu)
+        self._myu = load_topology_(prmtop.encode(), &self._traj_control)
+        self._mdsystem = create_mdsystem_(rst7.encode(), &self._myu)
 
         # trigger loading
         self.positions = self.positions
@@ -49,16 +49,15 @@ cdef class setup:
         # compat with pysander
         self.positions = arr
 
-    @property
-    def positions(self):
-        return get_positions(self._mdsystem).reshape(self.n_atoms, 3)
+    property positions:
+        def __get__(self):
+            return get_positions(self._mdsystem).reshape(self.n_atoms, 3)
 
-    @positions.setter
-    def positions(self, arr):
-        cdef double[:] arr_view = np.asarray(arr).flatten()
-        load_coords_(&self._myu, &self._traj_control,
-                      &arr_view[0], &self._mdsystem)
-        InitExecon(&(self._mdsystem.etimers))
+        def __set__(self, arr):
+            cdef double[:] arr_view = np.asarray(arr).flatten()
+            load_coords_(&self._myu, &self._traj_control,
+                          &arr_view[0], &self._mdsystem)
+            InitExecon(&(self._mdsystem.etimers))
         
     def energy_forces(self):
         cdef Energy ene
