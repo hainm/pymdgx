@@ -7,23 +7,32 @@ Install
 -------
 
 ```bash
-make
+amber.python setup.py install
+
+# or
+# make
 ```
 
 Examples
 --------
 
 ```python
-import cutil
+import mdgx
 
 prmtop = 'vAla3.prmtop'
 rst7 = 'vAla3.rst7'
 
-context = cutil.setup(prmtop, rst7)
-
-# trigger energy and force calculation
-context.positions = context.positions
+context = mdgx.setup(prmtop, rst7)
 
 # get energies and forces
 mdgx_ene, mdgx_forces = context.energy_forces()
+
+# set positions
+context.positions = new_positions
+```
+
+Compare to sander energy and force
+----------------------------------
+```bash
+make test
 ```

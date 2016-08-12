@@ -15,8 +15,8 @@ cython_directives = {
 }
 
 ext = Extension(
-        "cutil",
-        ["cutil.pyx",],
+        "mdgx.mdgx",
+        ["mdgx/mdgx.pyx",],
         libraries=['mdgx', 'netcdf',],
         library_dirs=[libdir,],
         include_dirs=[amberhome + '/include/',],
@@ -25,7 +25,8 @@ ext = Extension(
         )
 
 setup(
+    name='mdgx',
     ext_modules=cythonize([ext, ],
         compiler_directives=cython_directives,
-        ),
+    ),
 )

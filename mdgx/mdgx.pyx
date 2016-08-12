@@ -24,6 +24,9 @@ cdef class setup:
         self._myu = load_topology_(prmtop, &self._traj_control)
         self._mdsystem = create_mdsystem_(rst7, &self._myu)
 
+        # trigger loading
+        self.positions = self.positions
+
     def __enter__(self):
         return self
 
@@ -56,13 +59,14 @@ cdef class setup:
         load_coords_(&self._myu, &self._traj_control,
                       &arr_view[0], &self._mdsystem)
         InitExecon(&(self._mdsystem.etimers))
-        MMForceEnergy(&self._myu, &self._mdsystem, &self._traj_control)
         
     def energy_forces(self):
         cdef Energy ene
         cdef cell* cell_ptr
         cdef int i, j, k
         cdef double[:] gradients = np.zeros(self.n_atoms*3)
+
+        MMForceEnergy(&self._myu, &self._mdsystem, &self._traj_control)
 
         for i in range(self._mdsystem.CG.ncell):
             cell_ptr = &(self._mdsystem.CG.data[i])
