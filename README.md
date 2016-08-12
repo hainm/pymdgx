@@ -21,7 +21,7 @@ rst7 = 'vAla3.rst7'
 
 context = cutil.setup(prmtop, rst7)
 
-# trigger force and energy calculation
+# trigger energy and force calculation
 context.positions = context.positions
 
 # get energies and forces
