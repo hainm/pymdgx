@@ -15,6 +15,7 @@ addons:
     - libnetcdf-dev
 
 install:
+    - sudo apt-get install libfftw3-3
     - source devtools/travis-ci/setup_env.sh
     - export MDGXHOME=`python -c 'import sys; print(sys.prefix)'`
     - python ./setup.py install
