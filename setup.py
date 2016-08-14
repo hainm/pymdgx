@@ -7,11 +7,11 @@ mdgxhome = os.environ.get("MDGXHOME")
 
 if mdgxhome is not None:
     library_dirs = [os.path.join(mdgxhome, 'lib'),]
-    include_dirs = os.path.join(mdgxhome, 'include')
+    include_dirs = [os.path.join(mdgxhome, 'include'),]
 else:
     amberhome = os.environ.get('AMBERHOME')
     library_dirs = [os.path.join(amberhome, 'lib'),]
-    include_dirs = os.path.join(amberhome, 'include')
+    include_dirs = [os.path.join(amberhome, 'include'),]
 
 extra_compile_args = ['-O0', '-ggdb']
 extra_link_args = ['-O0', '-ggdb']
