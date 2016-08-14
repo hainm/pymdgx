@@ -31,9 +31,9 @@ cdef class setup:
         return self
 
     def __exit__(self, *args):
-        self._clean()
+        self.cleanup()
 
-    def _clean(self):
+    def cleanup(self):
         destroy_mdsystem(&self._mdsystem)
         destroy_uform(&self._myu, &self._mdsystem)
 
