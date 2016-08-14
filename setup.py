@@ -3,8 +3,16 @@ from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 
-amberhome = os.environ.get('AMBERHOME')
-libdir = os.path.join(amberhome, 'lib')
+mdgxhome = os.environ.get("MDGXHOME")
+
+if mdgxhome is not None:
+    library_dirs = [os.path.join(mdgxhome, 'lib'),]
+    include_dirs = os.path.join(mdgxhome, 'include')
+else:
+    amberhome = os.environ.get('AMBERHOME')
+    library_dirs = [os.path.join(amberhome, 'lib'),]
+    include_dirs = os.path.join(amberhome, 'include')
+
 extra_compile_args = ['-O0', '-ggdb']
 extra_link_args = ['-O0', '-ggdb']
 
@@ -18,8 +26,8 @@ ext = Extension(
         "mdgx.mdgx",
         ["mdgx/mdgx.pyx",],
         libraries=['mdgx', 'netcdf',],
-        library_dirs=[libdir,],
-        include_dirs=[amberhome + '/include/',],
+        library_dirs=library_dirs,
+        include_dirs=include_dirs,
         extra_compile_args=extra_compile_args,
         extra_link_args=extra_link_args,
         )
