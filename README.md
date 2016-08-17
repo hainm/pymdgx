@@ -1,6 +1,6 @@
 # pymdgx
 
-[![Build Status](https://travis-ci.org/hainm/pymdgx.svg?branch=master)](https://travis-ci.org/hainm/pymdgx)
+[![Build Status](https://travis-ci.org/amber-md/pymdgx.svg?branch=master)](https://travis-ci.org/amber-md/pymdgx)
 
 Playground with mdgx python interface. This repo is for developer.
 
