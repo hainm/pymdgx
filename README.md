@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hainm/pymdgx.svg?branch=master)](https://travis-ci.org/hainm/pymdgx)
 
-my playground with mdgx python interface.
+Playground with mdgx python interface. This repo is for developer.
 
 Nothing is serious yet.
 
