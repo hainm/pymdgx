@@ -15,13 +15,12 @@ import mdgx
 prmtop = 'vAla3.prmtop'
 rst7 = 'vAla3.rst7'
 
-context = mdgx.setup(prmtop, rst7)
+with mdgx.setup(prmtop, rst7) as context:
+    # get energies and forces
+    mdgx_ene, mdgx_forces = context.energy_forces()
 
-# get energies and forces
-mdgx_ene, mdgx_forces = context.energy_forces()
-
-# set positions
-context.positions = new_positions
+    # set positions
+    context.positions = new_positions
 ```
 
 Install
