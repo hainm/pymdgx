@@ -1,8 +1,8 @@
 # pymdgx
 
-[![Build Status](https://travis-ci.org/hainm/pymdgx.svg?branch=master)](https://travis-ci.org/hainm/pymdgx)
+[![Build Status](https://travis-ci.org/Amber-MD/pymdgx.svg?branch=master)](https://travis-ci.org/Amber-MD/pymdgx)
 
-my playground with mdgx python interface.
+Playground with mdgx python interface. This repo is for developer.
 
 Nothing is serious yet.
 
@@ -15,13 +15,12 @@ import mdgx
 prmtop = 'vAla3.prmtop'
 rst7 = 'vAla3.rst7'
 
-context = mdgx.setup(prmtop, rst7)
+with mdgx.setup(prmtop, rst7) as context:
+    # get energies and forces
+    mdgx_ene, mdgx_forces = context.energy_forces()
 
-# get energies and forces
-mdgx_ene, mdgx_forces = context.energy_forces()
-
-# set positions
-context.positions = new_positions
+    # set positions
+    context.positions = new_positions
 ```
 
 Install
